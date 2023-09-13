@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.*;
 
 
-public class Main {
+public class Main  {
     private static final String myFail = "C:\\Users\\eshap\\IdeaProjects\\HomeWork_Modul10_3\\src\\words.txt";
     public static void main(String[] args) throws FileNotFoundException {
         File file = new File(myFail);
@@ -37,11 +37,18 @@ public class Main {
                 }
             }
         }
-//        System.out.println(spisok);
-        for (Map.Entry<String, Integer> pair : spisok.entrySet()) {
-            System.out.println(pair.getKey()+" "+pair.getValue());
+             List<Map.Entry<String, Integer>> list = new ArrayList<>(spisok.entrySet());
+             Comparator<Map.Entry<String, Integer>> sortComparator = (entry1, entry2) ->
+                entry2.getValue().compareTo(entry1.getValue());
+                    list.sort(sortComparator);
+
+        TreeMap<String, Integer> sortedMap = new TreeMap<>();
+        for (Map.Entry<String, Integer> entry : list) {
+            sortedMap.put(entry.getKey(), entry.getValue());
+            System.out.println(entry.getKey()+" "+entry.getValue());
         }
     }
+
 
 }
 
